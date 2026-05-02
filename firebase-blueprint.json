@@ -1,0 +1,92 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and role information",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "role": { "type": "string", "enum": ["admin", "operator"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "role"]
+    },
+    "Driver": {
+      "title": "Driver",
+      "description": "Vehicle driver details",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "licenseNumber": { "type": "string" },
+        "phone": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "licenseNumber", "phone"]
+    },
+    "Vehicle": {
+      "title": "Vehicle",
+      "description": "Fleet vehicle information",
+      "type": "object",
+      "properties": {
+        "plateNumber": { "type": "string" },
+        "model": { "type": "string" },
+        "driverId": { "type": "string" },
+        "speedLimit": { "type": "number" },
+        "status": { "type": "string", "enum": ["active", "inactive"] },
+        "currentSpeed": { "type": "number" },
+        "lastUpdate": { "type": "string", "format": "date-time" }
+      },
+      "required": ["plateNumber", "model", "speedLimit", "status"]
+    },
+    "Alert": {
+      "title": "Alert",
+      "description": "Overspeed and system alerts",
+      "type": "object",
+      "properties": {
+        "vehicleId": { "type": "string" },
+        "plateNumber": { "type": "string" },
+        "speed": { "type": "number" },
+        "speedLimit": { "type": "number" },
+        "message": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["vehicleId", "speed", "speedLimit", "message", "createdAt"]
+    },
+    "TrackingData": {
+      "title": "TrackingData",
+      "description": "Real-time location and speed logs",
+      "type": "object",
+      "properties": {
+        "vehicleId": { "type": "string" },
+        "speed": { "type": "number" },
+        "latitude": { "type": "number" },
+        "longitude": { "type": "number" },
+        "recordedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["vehicleId", "speed", "recordedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/drivers/{driverId}": {
+      "schema": "Driver",
+      "description": "Driver records"
+    },
+    "/vehicles/{vehicleId}": {
+      "schema": "Vehicle",
+      "description": "Vehicle fleet"
+    },
+    "/alerts/{alertId}": {
+      "schema": "Alert",
+      "description": "System alerts"
+    },
+    "/tracking/{trackId}": {
+      "schema": "TrackingData",
+      "description": "Historical tracking data"
+    }
+  }
+}

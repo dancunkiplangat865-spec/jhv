@@ -1,0 +1,5 @@
+{
+  "name": "FleetGuard: Fleet Management & Speed Monitoring",
+  "description": "A production-ready fleet management system with real-time speed monitoring, driver tracking, and automated speed governor alerts.",
+  "requestFramePermissions": []
+}
